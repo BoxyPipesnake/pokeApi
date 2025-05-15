@@ -1,5 +1,8 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
+// Elementos del DOM
+const pokemonsContainer = document.getElementById('pokemons-container');
+
 const limit = 20;
 
 async function getPokemons(offset = 0) {
@@ -46,4 +49,34 @@ async function getPokemons(offset = 0) {
   }
 }
 
-//getPokemons();
+function renderPokemons(pokemons) {
+  pokemonsContainer.innerHTML = '';
+
+  pokemons.forEach(pokemon => {
+    const card = document.createElement('div');
+    card.classList.add('pokemon-card');
+
+    const types = pokemon.types.join(', ');
+    const abilities = pokemon.abilities.join(', ');
+
+    const hpStat = pokemon.stats.find(stat => stat.name === 'hp');
+    const attackStat = pokemon.stats.find(stat => stat.name === 'attack');
+    const defenseStat = pokemon.stats.find(stat => stat.name === 'defense');
+
+    card.innerHTML = `
+      <img src="${pokemon.image}" alt="${pokemon.name}">
+      <h3>${pokemon.name} (#${pokemon.id})</h3>
+      <p><strong>Tipo:</strong> ${types}</p>
+      <p><strong>Habilidades:</strong> ${abilities}</p>
+      <p><strong>HP:</strong> ${hpStat ? hpStat.value : 'N/A'}</p>
+      <p><strong>Ataque:</strong> ${attackStat ? attackStat.value : 'N/A'}</p>
+      <p><strong>Defensa:</strong> ${defenseStat ? defenseStat.value : 'N/A'}</p>
+    `;
+
+    pokemonsContainer.appendChild(card);
+  });
+}
+
+
+
+getPokemons();
