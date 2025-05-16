@@ -107,7 +107,7 @@ h1 {
 
 
 
-@media (min-width: 768px){
+@media (min-width: 700px){
     #pokemons-container {
         grid-template-columns: repeat(2, 1fr);
     }
