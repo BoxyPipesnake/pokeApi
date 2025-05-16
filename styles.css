@@ -113,8 +113,3 @@ h1 {
     }
 }
 
-@media (min-width: 1000px){
-    #pokemons-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
