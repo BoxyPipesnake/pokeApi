@@ -80,13 +80,18 @@ function renderPokemons(pokemons) {
     const defenseStat = pokemon.stats.find(stat => stat.name === 'defense');
 
     card.innerHTML = `
-      <img src="${pokemon.image}" alt="${pokemon.name}">
-      <h3>${pokemon.name} (#${pokemon.id})</h3>
+    <div class="pokemon-img">
+        <img src="${pokemon.image}" alt="${pokemon.name}">
+    </div>
+    <div class="pokemon-content">
+    <h3>${pokemon.name} (#${pokemon.id})</h3>
       <p><strong>Tipo:</strong> ${types}</p>
       <p><strong>Habilidades:</strong> ${abilities}</p>
       <p><strong>HP:</strong> ${hpStat ? hpStat.value : 'N/A'}</p>
       <p><strong>Ataque:</strong> ${attackStat ? attackStat.value : 'N/A'}</p>
       <p><strong>Defensa:</strong> ${defenseStat ? defenseStat.value : 'N/A'}</p>
+    </div>
+      
     `;
 
     pokemonsContainer.appendChild(card);

@@ -1,7 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+  background-color: #ef5350;
+  font-family: 'Poppins', sans-serif;
+  color: #212121;
+  margin: 0;
+}
+
+
+
+h1 {
+  font-family: cursive; 
+  font-size: 3.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 0 #d62828, 4px 4px 0 #000; 
+  letter-spacing: 2px;
+  margin: 2rem;
+}
+
+
 #pokemons-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    place-items: center;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
+    gap: 2rem;
+    justify-items: center;
 }   
+
+.pokemon-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.2), 
+    0 0 0 4px rgba(255, 255, 255, 0.5),
+    inset 0 0 6px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  width: 400px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.03);
+}
+
+.pokemon-card img {
+  width: 200px;
+  height: 200px;
+}
+
+.pokemon-card h3 {
+  font-weight: bold;
+  font-size: 2.2rem;
+  color: #ef5350;
+}
+
+
+.pokemon-content {
+    display: flex;
+    font-size: 1.2rem;
+    flex-direction: column;
+    line-height: 1.5;
+    padding: 1rem;
+    gap: 1rem;
+    text-align: left;
+}
+
+.pokemon-card:hover {
+    cursor: pointer;
+  transform: scale(1.03);
+}
+
+
+/* Area botones */
+
+.pagination {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.pagination button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+  transform: scale(1.03);
+  color: #d32f2f; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 768px){
+    #pokemons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px){
+    #pokemons-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
