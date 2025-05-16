@@ -2,18 +2,28 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
 // Elementos del DOM
 const pokemonsContainer = document.getElementById('pokemons-container');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
 
 const limit = 20;
+let offset = 0; // Guardamos en que grupo de 20 estamos
+let totalPokemons = 0; 
 
-async function getPokemons(offset = 0) {
+
+async function getPokemons(offsetValue = 0) {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+    const response = await fetch(`${BASE_URL}?offset=${offsetValue}&limit=${limit}`);
+
     if (!response.ok)
       throw new Error(
         `No se pudo obtener la lista de Pokemons. Status Code ${response.status}`
       );
 
     const data = await response.json();
+
+    if (totalPokemons === 0) {
+      totalPokemons = data.count; // Total de pokemones existentes
+    }
 
     const detailedPokemons = [];
 
@@ -42,7 +52,13 @@ async function getPokemons(offset = 0) {
       });
     }
 
+
+    console.log(detailedPokemons);
+
     renderPokemons(detailedPokemons);
+
+    updatePaginationButtons(); // Actualizamos botones después de renderizar
+
 
   } catch (error) {
     console.error('Ocurrió un problema al cargar los datos de los Pokemon:', error.message);
@@ -78,5 +94,10 @@ function renderPokemons(pokemons) {
 }
 
 
+// Controla el estado de los botones según el offset actual
+function updatePaginationButtons() {
+  prevBtn.disabled = offset === 0;
+  nextBtn.disabled = offset >= totalPokemons - limit;
+}
 
 getPokemons();
