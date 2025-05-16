@@ -100,4 +100,18 @@ function updatePaginationButtons() {
   nextBtn.disabled = offset >= totalPokemons - limit;
 }
 
+prevBtn.addEventListener('click', () => {
+  if (offset >= limit) {
+    offset -= limit;
+    getPokemons(offset);
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (offset + limit < totalPokemons) {
+    offset += limit;
+    getPokemons(offset);
+  }
+});
+
 getPokemons();
